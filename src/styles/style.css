@@ -1,0 +1,65 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* end reset */
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
+}
+
+.grid-photo-item {
+  object-fit: cover;
+  width: 25vw;
+  margin: 0;
+  padding: 0;
+  height: 400px;
+}
+
+@media (max-width: 1200px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-photo-item {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+  .grid-photo-item {
+    width: 100vw;
+  }
+}
+
+
+
