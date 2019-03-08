@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => (
             <Img
               alt={node.title}
               fluid={node.featured_media.localFile.childImageSharp.fluid}
-              className="img-responsive responsive--full folio-pic"
+              className="img-responsive folio-pic"
             />
             <div className="folio-item">
               <div className="folio-item-details">

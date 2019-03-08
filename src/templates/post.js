@@ -26,7 +26,7 @@ class PostTemplate extends Component {
           <Img
             resolutions={resolutions}
             alt={post.title}
-            className="img-responsive"
+            className="post-image"
           />
           <div className="post-body">{postBody}</div>
         </div>
