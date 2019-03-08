@@ -457,3 +457,15 @@ footer {
 .site-footer {
 	margin: 3em 0;
 }
+
+.post {
+  max-width: 1200px;
+  margin: 60px auto 0 auto;
+}
+
+
+
+.wp-block-image img {
+  max-width: 1200px;
+  margin-bottom: 2em;
+}

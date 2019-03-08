@@ -18,9 +18,9 @@ const Header = ({ siteTitle }) => (
           <span className="icon-bar" />
           <span className="icon-bar" />
         </button>
-        <a className="navbar-brand" href="#" rel="home">
+        <Link className="navbar-brand" to="/">
           {siteTitle}
-        </a>
+        </Link>
       </div>
       <div
         className="collapse navbar-collapse"
@@ -28,13 +28,13 @@ const Header = ({ siteTitle }) => (
       >
         <ul className="nav navbar-nav navbar-right">
           <li>
-            <a href="#about">ABOUT</a>
+            <Link to="/#about">ABOUT</Link>
           </li>
           <li>
-            <a href="#updates">UPDATES</a>
+            <Link to="/#updates">UPDATES</Link>
           </li>
           <li>
-            <a href="#contact">CONTACT</a>
+            <Link to="/#contact">CONTACT</Link>
           </li>
         </ul>
       </div>

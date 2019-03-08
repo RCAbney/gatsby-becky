@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 import Header from './header'
 
@@ -20,11 +21,11 @@ const Layout = ({ children }) => (
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className="site-content">
           {children}
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
+          <div className="container">
+            <footer className="site-footer">
+              <p>© {new Date().getFullYear()} &ndash; <Link to="/">Becky365</Link></p>
+            </footer>
+          </div>
         </div>
       </>
     )}
