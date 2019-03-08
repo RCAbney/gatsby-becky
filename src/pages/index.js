@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
@@ -35,7 +36,7 @@ const IndexPage = ({ data }) => (
             <div className="folio-item">
               <div className="folio-item-details">
                 <h2 className="entry-title">
-                  <a href="#">{node.title}</a>
+                  <Link to={node.slug}>{node.title}</Link>
                 </h2>
                 <p>{node.date}</p>
               </div>
