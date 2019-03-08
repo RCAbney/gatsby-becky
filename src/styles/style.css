@@ -8,7 +8,7 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
- html {
+html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -174,7 +174,8 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -184,7 +185,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -193,9 +195,9 @@ select { /* 1 */
  */
 
 button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+[type='button'],
+[type='reset'],
+[type='submit'] {
   -webkit-appearance: button;
 }
 
@@ -204,9 +206,9 @@ button,
  */
 
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -216,9 +218,9 @@ button::-moz-focus-inner,
  */
 
 button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -267,8 +269,8 @@ textarea {
  * 2. Remove the padding in IE 10.
  */
 
-[type="checkbox"],
-[type="radio"] {
+[type='checkbox'],
+[type='radio'] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -277,8 +279,8 @@ textarea {
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -287,7 +289,7 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 
-[type="search"] {
+[type='search'] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -296,7 +298,7 @@ textarea {
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -348,7 +350,6 @@ template {
   display: none;
 }
 
-
 /* add mine */
 
 body {
@@ -360,12 +361,14 @@ body {
 }
 
 #about {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/540246/rosalind-chang-122724-unsplash.jpg) no-repeat center;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/540246/rosalind-chang-122724-unsplash.jpg)
+    no-repeat center;
   background-size: cover;
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
 }
 
-h2, a.navbar-brand {
+h2,
+a.navbar-brand {
   font-family: 'Oswald', sans-serif;
 }
 
@@ -403,11 +406,11 @@ h2, a.navbar-brand {
   display: flex;
   align-items: center;
   justify-content: center;
-	transition: all .2s;
+  transition: all 0.2s;
 }
 
 .folio-item:hover {
-	opacity: 0.75;
+  opacity: 0.75;
 }
 
 .folio-item-details {
@@ -445,17 +448,11 @@ footer {
   width: 100%;
   height: 500px;
   -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.entry-content img {
-	width: 100%;
-	display: block;
-	height: auto;
+  object-fit: cover;
 }
 
 .site-footer {
-	margin: 3em 0;
+  margin: 3em 0;
 }
 
 .post {
@@ -463,9 +460,17 @@ footer {
   margin: 60px auto 0 auto;
 }
 
+.img-responsive picture img {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+}
 
+.post div.img-responsive {
+  display: block !important;
+  margin: 0 auto;
+}
 
-.wp-block-image img {
-  max-width: 1200px;
-  margin-bottom: 2em;
+.post-body {
+  margin-top: 2em;
 }

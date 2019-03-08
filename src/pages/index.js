@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
@@ -24,13 +25,9 @@ const IndexPage = ({ data }) => (
       <div className="row no-gutter">
         {data.allWordpressPost.edges.map(({ node }) => (
           <div className="col-md-3 col-sm-6" key={node.id}>
-            <img
-              src={
-                node.featured_media
-                  ? node.featured_media.source_url
-                  : `https://placehold.it/600x600`
-              }
+            <Img
               alt={node.title}
+              fluid={node.featured_media.localFile.childImageSharp.fluid}
               className="img-responsive responsive--full folio-pic"
             />
             <div className="folio-item">
@@ -56,12 +53,18 @@ export const postQuery = graphql`
       edges {
         node {
           id
-          date
+          date(formatString: "MMMM Do, YYYY")
           title
           excerpt
           slug
           featured_media {
-            source_url
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 600) {
+                  src
+                }
+              }
+            }
           }
         }
       }
