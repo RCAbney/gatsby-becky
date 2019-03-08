@@ -21,14 +21,20 @@ class PostTemplate extends Component {
           title="Becky365"
           keywords={[`photography`, `365 day photography challenge`]}
         />
-        <div className="post">
-          <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-          <Img
-            resolutions={resolutions}
-            alt={post.title}
-            className="post-image"
-          />
-          <div className="post-body">{postBody}</div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 col-md-push-2">
+              <div className="post">
+                <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
+                <Img
+                  resolutions={resolutions}
+                  alt={post.title}
+                  className="post-image"
+                />
+                <div className="post-body">{postBody}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     )
