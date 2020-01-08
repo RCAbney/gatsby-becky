@@ -8,8 +8,7 @@ import parse from 'html-react-parser'
 class PostTemplate extends Component {
   render() {
     const post = this.props.data.wordpressPost
-    const resolutions =
-      post.featured_media.localFile.childImageSharp.resolutions
+
     const postBody = parse(post.content, {
       replace: ({ attribs }) =>
         attribs && attribs.class === 'wp-block-image' && <React.Fragment />,
@@ -26,11 +25,17 @@ class PostTemplate extends Component {
             <div className="col-md-8 col-md-push-2">
               <div className="post">
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-                {/* <Img
-                  resolutions={resolutions}
-                  alt={post.title}
-                  className="post-image"
-                /> */}
+                {(post.featured_media.localFile && (
+                  <Img
+                    resolutions={
+                      post.featured_media.localFile.childImageSharp.resolutions
+                    }
+                    alt={post.title}
+                    className="post-image"
+                  />
+                )) || (
+                  <img src="https://placehold.it/1500x1500" alt="placeholder" />
+                )}
                 <div className="post-body">{postBody}</div>
               </div>
             </div>
