@@ -26,11 +26,11 @@ class PostTemplate extends Component {
             <div className="col-md-8 col-md-push-2">
               <div className="post">
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-                <Img
+                {/* <Img
                   resolutions={resolutions}
                   alt={post.title}
                   className="post-image"
-                />
+                /> */}
                 <div className="post-body">{postBody}</div>
               </div>
             </div>

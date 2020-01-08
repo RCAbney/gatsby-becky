@@ -5,7 +5,6 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO
@@ -26,11 +25,13 @@ const IndexPage = ({ data }) => (
       <div className="row no-gutter">
         {data.allWordpressPost.edges.map(({ node }) => (
           <div className="col-md-3 col-sm-6" key={node.id}>
-            <Img
-              alt={node.title}
-              fluid={node.featured_media.localFile.childImageSharp.fluid}
-              className="img-responsive folio-pic"
-            />
+            {(node.featured_media.localFile && (
+              <Img
+                alt={node.title}
+                fluid={node.featured_media.localFile.childImageSharp.fluid}
+                className="img-responsive folio-pic"
+              />
+            )) || <img src="https://placehold.it/500x500" alt="poop" />}
             <div className="folio-item">
               <div className="folio-item-details">
                 <h2 className="entry-title">
