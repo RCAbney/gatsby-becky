@@ -3,17 +3,17 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Img from 'gatsby-image'
-import parse from 'html-react-parser'
+// import parse from 'html-react-parser'
 
 class PostTemplate extends Component {
   render() {
-    const post = this.props.data.wordpressPost
+    const post = this.props.data.wordPress.post
 
-    const postBody = parse(post.content, {
-      replace: ({ attribs }) =>
-        attribs && attribs.class === 'wp-block-image' && <React.Fragment />,
-    })
-    console.log(postBody)
+    // const postBody = parse(post.content, {
+    //   replace: ({ attribs }) =>
+    //     attribs && attribs.class === 'wp-block-image' && <React.Fragment />,
+    // })
+    // console.log(postBody)
     return (
       <Layout>
         <SEO
@@ -25,10 +25,10 @@ class PostTemplate extends Component {
             <div className="col-md-8 col-md-push-2">
               <div className="post">
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-                {(post.featured_media.localFile && (
+                {(post.featuredImage && (
                   <Img
                     resolutions={
-                      post.featured_media.localFile.childImageSharp.resolutions
+                      post.featuredImage.imageFile.childImageSharp.resolutions
                     }
                     alt={post.title}
                     className="post-image"
@@ -36,7 +36,10 @@ class PostTemplate extends Component {
                 )) || (
                   <img src="https://placehold.it/1500x1500" alt="placeholder" />
                 )}
-                <div className="post-body">{postBody}</div>
+                <div
+                  className="post-body"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
               </div>
             </div>
           </div>
@@ -49,24 +52,25 @@ class PostTemplate extends Component {
 export default PostTemplate
 
 export const pageQuery = graphql`
-  query currentPostQuery($id: String!) {
-    wordpressPost(id: { eq: $id }) {
-      title
-      content
-      featured_media {
-        localFile {
-          childImageSharp {
-            resolutions(height: 1200, width: 1600) {
-              src
-              height
-              width
+  query currentPostQuery($id: ID!) {
+    wordPress {
+      post(id: $id) {
+        title
+        content
+        featuredImage {
+          sourceUrl
+          imageFile {
+            childImageSharp {
+              resolutions(height: 1200, width: 1600) {
+                src
+                height
+                width
+              }
             }
           }
         }
       }
-    }
-    site {
-      siteMetadata {
+      generalSettings {
         title
       }
     }

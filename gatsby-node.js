@@ -1,20 +1,55 @@
 const path = require(`path`)
 const slash = require(`slash`)
 
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+
+exports.createResolvers = async ({
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
+  const { createNode } = actions
+
+  await createResolvers({
+    WordPress_MediaItem: {
+      imageFile: {
+        type: 'File',
+        async resolve(source) {
+          let sourceUrl = source.sourceUrl
+
+          if (source.mediaItemUrl !== undefined) {
+            sourceUrl = source.mediaItemUrl
+          }
+
+          return await createRemoteFileNode({
+            url: encodeURI(sourceUrl),
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+  })
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const result = await graphql(`
     {
-      allWordpressPost {
-        edges {
-          node {
-            id
-            slug
-            status
-            template
-            format
-            slug
+      wordPress {
+        posts(first: 100) {
+          edges {
+            node {
+              id
+              slug
+            }
           }
         }
       }
@@ -27,28 +62,16 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring
-  const { allWordpressPost } = result.data
-
-  // Create Page pages CURRENTLY NO PAGES ON BECKY SITE.
-  //   const pageTemplate = path.resolve(`./src/templates/page.js`)
-  //   allWordpressPage.edges.forEach(edge => {
-  //     createPage({
-  //       path: `/${edge.node.slug}/`,
-  //       component: slash(pageTemplate),
-  //       context: {
-  //         id: edge.node.id,
-  //       },
-  //     })
-  //   })
+  const posts = result.data.wordPress.posts.edges
 
   const postTemplate = path.resolve(`./src/templates/post.js`)
 
-  allWordpressPost.edges.forEach(edge => {
+  posts.forEach(({ node }) => {
     createPage({
-      path: `/${edge.node.slug}/`,
+      path: `/${node.slug}/`,
       component: slash(postTemplate),
       context: {
-        id: edge.node.id,
+        id: node.id,
       },
     })
   })

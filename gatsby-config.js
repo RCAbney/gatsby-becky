@@ -12,12 +12,11 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-wordpress`,
+      resolve: `gatsby-source-graphql`,
       options: {
-        baseUrl: `becky365.com`,
-        protocol: `https`,
-        hostingWPCOM: false,
-        useACF: false,
+        typeName: `WordPress`,
+        fieldName: `wordPress`,
+        url: `https://becky365.com/graphql`,
       },
     },
     `gatsby-plugin-react-helmet`,
